@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'project-report'
+
+version = '0.1'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+dependencies {
+	testCompile "junit:junit:4.+", "org.mockito:mockito-all:1.8.5"
+	compile group: 'org.apache.ant', name: 'ant', version: '1.8.2'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Ant MultiLogger',
+                   'Implementation-Version': version,
+                   'Built-By': System.getProperty("user.name"),
+                   'Built-Date': new Date(),
+                   'Built-JDK': System.getProperty("java.version")
+    }
+}
